@@ -1,35 +1,19 @@
-
 @import "tailwindcss";
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme inline {
+  --color-grey-main: rgb(247, 247, 247);
+  --color-grey-light: rgb(227, 227, 227);
+  --color-grey-medium: rgb(207, 207, 207);
+  --color-grey-dark: rgb(181, 181, 181);
+  --color-grey-main-alpha: rgba(247, 247, 247, 0.6);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-primary-main: rgb(251, 153, 142);
+  --color-primary-light: rgb(228, 116, 105);
+  --color-primary-medium: rgb(205, 88, 78);
+  --color-primary-dark: rgb(179, 64, 55);
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --color-text-title: #2B2E33;
+  --color-text-text: #7B7F85;
+  --color-text-main: #7B7F85;
+  --color-text-sub: #C1C4C8;
 }
-
-
