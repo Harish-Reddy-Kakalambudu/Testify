@@ -78,7 +78,7 @@ const SignIn = () => {
               Don't have an account?{" "}
               <Link
                 component={RouterLink}
-                to="/signup"
+                to="/sign-up"
                 underline="none"
                 className={styles.signupLink}
               >
