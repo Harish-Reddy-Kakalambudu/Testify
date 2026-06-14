@@ -1,3 +1,43 @@
 export const styles = {
-    header:"w-full h-[50px] bg-white  border-b border-grey-light flex justify-center items-center "
-}
+  header: `
+    w-full
+    h-[48px]
+    bg-white
+    border-b
+    border-grey-light
+    px-3
+    flex
+    items-center
+    justify-between
+  `,
+
+  leftSection: `
+    min-w-[220px]
+  `,
+
+  dateTime: `
+    !text-[0.79rem]
+    !text-text-title
+    font-medium
+  `,
+
+  centerSection: `
+    flex-1
+    flex
+    justify-center
+  `,
+
+  workspaceName: `
+    !text-[0.9rem]
+    font-semibold
+    text-text-title
+  `,
+
+  rightSection: `
+    flex
+    items-center
+    gap-2
+    min-w-[220px]
+    justify-end
+  `,
+};

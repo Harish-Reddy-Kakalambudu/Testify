@@ -11,6 +11,9 @@
   --color-primary-light: rgb(228, 116, 105);
   --color-primary-medium: rgb(205, 88, 78);
   --color-primary-dark: rgb(179, 64, 55);
+
+  --color-primary-light-alpha1 : rgba(228, 116, 105,0.1);
+  --color-primary-light-alpha2 : rgba(228, 116, 105,0.2);
   --color-primary-light-alpha3 : rgba(228, 116, 105,0.3);
   --color-primary-light-alpha4 : rgba(228, 116, 105,0.4);
   --color-primary-light-alpha5 : rgba(228, 116, 105,0.5);
