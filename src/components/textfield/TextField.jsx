@@ -12,12 +12,12 @@ const renderIcon = (icon) => {
 
   if (isValidElement(icon)) {
     return cloneElement(icon, {
-      sx: { color: "#7B7F85", fontSize: "20px", ...icon.props.sx },
+      sx: { color: "var(--txt-sub)", fontSize: "20px", ...icon.props.sx },
     });
   }
 
   return createElement(icon, {
-    sx: { color: "#7B7F85", fontSize: "20px" },
+    sx: { color: "var(--txt-sub)", fontSize: "20px" },
   });
 };
 
@@ -46,7 +46,7 @@ const TextField = ({
         aria-label="input action"
         edge="end"
         onClick={onIconButtonClick}
-        sx={{ color: "#7B7F85", padding: "4px" }}
+        sx={{ color: "var(--txt-sub)", padding: "4px" }}
       >
         {renderIcon(iconButton)}
       </IconButton>
@@ -65,30 +65,30 @@ const TextField = ({
         width,
         "& .MuiOutlinedInput-root": {
           height,
-          borderRadius: "8px",
-          backgroundColor: "#fff",
+          borderRadius: "var(--radius-md)",
+          backgroundColor: "var(--bg-card)",
         },
         "& .MuiOutlinedInput-notchedOutline": {
-          borderColor: "rgb(227, 227, 227)",
+          borderColor: "var(--bd-light)",
         },
         "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#C1C4C8",
+          borderColor: "var(--bd-main)",
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "var(--color-primary-light-alpha6)",
+          borderColor: "var(--pri-500)",
         },
         "& .MuiInputBase-input": {
-          color: "#2B2E33",
-          fontSize: "14px",
+          color: "var(--txt-title)",
+          fontSize: "var(--fs-md)",
           paddingTop: 0,
           paddingBottom: 0,
         },
         "& .MuiInputBase-input::placeholder": {
-          color: "#7B7F85",
+          color: "var(--txt-sub)",
           opacity: 1,
         },
         "& .MuiInputAdornment-root": {
-          color: "#7B7F85",
+          color: "var(--txt-sub)",
         },
       }}
       InputProps={{

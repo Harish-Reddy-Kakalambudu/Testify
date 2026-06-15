@@ -2,8 +2,8 @@ import { Button as MuiButton } from "@mui/material";
 
 const Button = ({
   label,
-  color = "#ffffff",
-  bgcolor = "#7459ff",
+  color = "var(--pri-50)",
+  bgcolor = "var(--pri-500)",
   height = "40px",
   width = "100%",
   startIcon,
@@ -26,9 +26,9 @@ const Button = ({
         height,
         color,
         background: bgcolor,
-        borderRadius: "8px",
-        fontSize: "15px",
-        fontWeight: 600,
+        borderRadius: "var(--radius-md)",
+        fontSize: "var(--fs-lg)",
+        fontWeight: "var(--fw-semibold)",
         textTransform: "none",
         boxShadow: "none",
         "&:hover": {

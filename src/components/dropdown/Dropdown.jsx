@@ -18,8 +18,10 @@ const Dropdown = ({
         PaperProps: {
           sx: {
              // gap between select and dropdown
-            borderRadius: "8px",
-            boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
+            borderRadius: "var(--radius-md)",
+            boxShadow: "var(--shadow-md)",
+            backgroundColor: "var(--bg-card)",
+            color: "var(--txt-main)",
             overflow: "hidden",
           },
         },
@@ -37,13 +39,17 @@ const Dropdown = ({
         },
         transition: "all 0.2s ease-in-out",
         "& .MuiSelect-select": {
-         fontSize: "0.815rem",
-    },
+          color: "var(--txt-title)",
+          fontSize: "var(--fs-sm)",
+        },
+        "& .MuiSvgIcon-root": {
+          color: "var(--txt-main)",
+        },
       }}
       renderValue={(selected) => {
         if (!selected) {
           return (
-            <span className="text-text-sub text-[0.815rem]">
+            <span className="text-sub text-[var(--fs-sm)]">
               {placeholder}
             </span>
           );
@@ -60,21 +66,19 @@ const Dropdown = ({
           value={option.value}
           sx={{
             transition: "all 0.2s ease",
-            fontSize:"0.8rem",
+            color: "var(--txt-main)",
+            fontSize: "var(--fs-sm)",
             "&:hover": {
-              backgroundColor:
-                "var(--color-primary-light-alpha1)",
+              backgroundColor: "var(--bg-hover)",
             },
 
             "&.Mui-selected": {
-              backgroundColor:
-                "var(--color-primary-light-alpha2)",
-              color: "var(--color-text-title)",
+              backgroundColor: "var(--pri-100)",
+              color: "var(--txt-title)",
             },
 
             "&.Mui-selected:hover": {
-              backgroundColor:
-                "var(--color-primary-light-alpha3)",
+              backgroundColor: "var(--pri-200)",
             },
           }}
         >

@@ -1,12 +1,12 @@
 export const styles = {
   dropdown: `
-    bg-white
-    rounded-lg
+    bg-card
+    rounded-[var(--radius-md)]
     border
-    border-grey-light
+    border-border
     min-w-[130px]
     h-[33px]
-    text-text-title
+    text-title
     shadow-sm
     transition-all
     duration-200

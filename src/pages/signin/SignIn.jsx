@@ -71,7 +71,7 @@ const SignIn = () => {
               type="submit"
               label="Sign in"
               height="40px"
-              bgcolor="var(--color-primary-light)"
+              bgcolor="var(--pri-500)"
             />
 
             <Typography className={styles.signupText}>

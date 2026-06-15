@@ -1,4 +1,5 @@
-import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { useEffect, useState } from "react";
 
@@ -8,6 +9,9 @@ import { styles } from "./styles";
 const Header = () => {
     const [activeOption, setActiveOption] = useState("completed");
     const [time, setTime] = useState(new Date());
+    const [isDarkMode, setIsDarkMode] = useState(
+        document.documentElement.classList.contains("dark")
+    );
 
     const options = [
         { label: "All", value: "all" },
@@ -23,6 +27,11 @@ const Header = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const handleThemeToggle = () => {
+        document.documentElement.classList.toggle("dark");
+        setIsDarkMode(document.documentElement.classList.contains("dark"));
+    };
+
     const date = time.toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
@@ -36,21 +45,18 @@ const Header = () => {
 
     return (
         <Box className={styles.header}>
-            {/* LEFT */}
             <Box className={styles.leftSection}>
                 <Typography className={styles.dateTime}>
-                    {date} • {currentTime}
+                    {date} | {currentTime}
                 </Typography>
             </Box>
 
-            {/* CENTER */}
             <Box className={styles.centerSection}>
                 <Typography className={styles.workspaceName}>
                     Testify Workspace
                 </Typography>
             </Box>
 
-            {/* RIGHT */}
             <Box className={styles.rightSection}>
                 <Dropdown
                     placeholder="Workspaces"
@@ -60,30 +66,46 @@ const Header = () => {
                 />
 
                 <IconButton
+                    aria-label="Toggle theme"
+                    onClick={handleThemeToggle}
                     sx={{
-                        backgroundColor: "var(--color-grey-main)",
-                        border: "1px solid var(--color-grey-light)",
                         width: 38,
                         height: 38,
+                        border: "1px solid var(--bd-light)",
+                        borderRadius: "var(--radius-md)",
+                        backgroundColor: "var(--bg-soft)",
+                        transition: "all 0.2s ease",
+                        "&:hover": {
+                            backgroundColor: "var(--bg-hover)",
+                        },
                     }}
                 >
-                    <LightModeOutlinedIcon
-                        sx={{
-                            fontSize: "1.02rem",
-                            color: "var(--color-text-main)",
-                        }}
-                    />
+                    {isDarkMode ? (
+                        <LightModeOutlinedIcon
+                            sx={{
+                                color: "var(--txt-main)",
+                                fontSize: "var(--fs-xl)",
+                            }}
+                        />
+                    ) : (
+                        <DarkModeOutlinedIcon
+                            sx={{
+                                color: "var(--txt-main)",
+                                fontSize: "var(--fs-xl)",
+                            }}
+                        />
+                    )}
                 </IconButton>
 
                 <Avatar
                     sx={{
                         width: "2.4rem",
                         height: "2.4rem",
-                        bgcolor: "var(--color-primary-light-alpha2)",
-                        color: "var(--color-text-title)",
-                        border: "1px solid var(--color-primary-light-alpha3)",
-                        fontSize:"1rem",
-                        fontWeight:"500"
+                        border: "1px solid var(--pri-200)",
+                        bgcolor: "var(--pri-100)",
+                        color: "var(--pri-700)",
+                        fontSize: "var(--fs-xl)",
+                        fontWeight: "var(--fw-medium)",
                     }}
                 >
                     A

@@ -2,9 +2,9 @@ export const styles = {
   header: `
     w-full
     h-[48px]
-    bg-white
+    bg-card
     border-b
-    border-grey-light
+    border-border
     px-3
     flex
     items-center
@@ -17,8 +17,8 @@ export const styles = {
 
   dateTime: `
     !text-[0.79rem]
-    !text-text-title
-    font-medium
+    !text-title
+    !font-medium
   `,
 
   centerSection: `
@@ -29,8 +29,8 @@ export const styles = {
 
   workspaceName: `
     !text-[0.9rem]
-    font-semibold
-    text-text-title
+    !font-semibold
+    !text-title
   `,
 
   rightSection: `
