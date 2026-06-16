@@ -1,4 +1,5 @@
 import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   IconButton,
@@ -128,6 +129,11 @@ const Tabs = ({
               className={styles.tab}
               label={
                 <Box className={styles.tabLabel}>
+                  {tab.method && (
+                    <Typography component="span" className={`${styles.methodText} ${styles[`method${tab.method}`] || ""}`}>
+                      {tab.method}
+                    </Typography>
+                  )}
                   <Typography component="span" className={styles.tabText}>
                     {tab.label}
                   </Typography>
@@ -146,6 +152,13 @@ const Tabs = ({
             />
           );
         })}
+        <Tab
+          aria-label="New tab"
+          value="__new_tab__"
+          disabled
+          className={`${styles.tab} ${styles.addTab}`}
+          label={<AddIcon sx={{ fontSize: 18 }} />}
+        />
       </MuiTabs>
 
       <Box role="tabpanel" className={`${styles.panel} ${panelClassName}`}>

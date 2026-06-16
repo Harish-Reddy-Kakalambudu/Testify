@@ -1,24 +1,45 @@
 export const styles = {
   header: `
     w-full
-    h-[48px]
+    h-[58px]
     bg-card
     border-b
     border-border
-    px-3
+    px-4
     flex
     items-center
     justify-between
+    shrink-0
   `,
 
   leftSection: `
-    min-w-[220px]
+    min-w-[330px]
+    flex
+    items-center
+    gap-2
+  `,
+
+  brandMark: `
+    w-[34px]
+    h-[34px]
+    [&_img]:w-full
+    [&_img]:h-full
+    [&_img]:object-contain
+  `,
+
+  brandName: `
+    !text-[20px]
+    !leading-none
+    !font-bold
+    !text-title
+    mr-2
   `,
 
   dateTime: `
-    !text-[0.79rem]
-    !text-title
+    !text-[15px]
+    !text-sub
     !font-medium
+    !leading-none
   `,
 
   centerSection: `
@@ -28,16 +49,32 @@ export const styles = {
   `,
 
   workspaceName: `
-    !text-[0.9rem]
-    !font-semibold
+    !text-[16px]
+    !font-bold
     !text-title
+    !leading-none
   `,
 
   rightSection: `
     flex
     items-center
-    gap-2
-    min-w-[220px]
+    gap-3
+    min-w-[330px]
     justify-end
+  `,
+
+  workspaceSelect: `
+    !min-w-[110px]
+    !h-[36px]
+    !bg-card
+  `,
+
+  headerIconButton: `
+    !w-[32px]
+    !h-[32px]
+    !p-0
+    !text-sub
+    hover:!bg-hover
+    hover:!text-title
   `,
 };

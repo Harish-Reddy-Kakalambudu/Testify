@@ -9,22 +9,26 @@ export const styles = {
 
   list: `
     w-full
-    min-h-[42px]
+    min-h-[50px]
     border-b
-    !border-pri-200
-    px-2
+    !border-border
+    !bg-card
+    !px-0
   `,
 
   tab: `
-    !min-h-[42px]
-    !h-[42px]
+    !min-h-[50px]
+    !h-[50px]
     !min-w-0
-    !px-3
+    !px-4
     !py-0
     !normal-case
     !text-main
-    !text-[var(--fs-sm)]
+    !text-[15px]
     !font-medium
+    !border-r
+    !border-border
+    !rounded-none
     hover:!bg-hover
     hover:!text-title
     [&.Mui-selected]:!text-title
@@ -47,16 +51,36 @@ export const styles = {
   `,
 
   tabText: `
-    !text-[var(--fs-sm)]
+    !text-[15px]
     !font-inherit
     !leading-none
     truncate
   `,
 
+  methodText: `
+    !text-[9px]
+    !font-bold
+    !leading-none
+    !font-mono
+    uppercase
+  `,
+
+  methodGET: "!text-[#2563eb]",
+  methodPOST: "!text-[#00a86b]",
+  methodPUT: "!text-[#f59e0b]",
+  methodPATCH: "!text-[#8b5cf6]",
+  methodDELETE: "!text-[#ef4444]",
+
+  addTab: `
+    !w-[56px]
+    !min-w-[56px]
+    !text-sub
+  `,
+
   closeButton: `
-    !w-[16px]
-    !h-[16px]
-    !min-w-[16px]
+    !w-[15px]
+    !h-[15px]
+    !min-w-[15px]
     !p-0
     !ml-0.5
     !text-sub

@@ -1,22 +1,23 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Avatar, Badge, Box, IconButton, Typography } from "@mui/material";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { useEffect, useState } from "react";
 
 import Dropdown from "../../dropdown/Dropdown";
+import Logo from "../../../assets/testify.svg";
 import { styles } from "./styles";
 
 const Header = () => {
-    const [activeOption, setActiveOption] = useState("completed");
+    const [activeOption, setActiveOption] = useState("personal");
     const [time, setTime] = useState(new Date());
     const [isDarkMode, setIsDarkMode] = useState(
         document.documentElement.classList.contains("dark")
     );
 
     const options = [
-        { label: "All", value: "all" },
-        { label: "Processing", value: "processing" },
-        { label: "Completed", value: "completed" },
+        { label: "Personal", value: "personal" },
+        { label: "Team", value: "team" },
     ];
 
     useEffect(() => {
@@ -39,13 +40,19 @@ const Header = () => {
     });
 
     const currentTime = time.toLocaleTimeString([], {
-        hour: "2-digit",
+        hour: "numeric",
         minute: "2-digit",
     });
 
     return (
         <Box className={styles.header}>
             <Box className={styles.leftSection}>
+                <Box className={styles.brandMark}>
+                    <img src={Logo} alt="Testify" />
+                </Box>
+                <Typography className={styles.brandName}>
+                    Testify
+                </Typography>
                 <Typography className={styles.dateTime}>
                     {date} | {currentTime}
                 </Typography>
@@ -59,39 +66,53 @@ const Header = () => {
 
             <Box className={styles.rightSection}>
                 <Dropdown
-                    placeholder="Workspaces"
+                    placeholder="Workspace"
                     value={activeOption}
                     onChange={setActiveOption}
                     options={options}
+                    className={styles.workspaceSelect}
                 />
+
+                <IconButton
+                    aria-label="Notifications"
+                    className={styles.headerIconButton}
+                >
+                    <Badge
+                        variant="dot"
+                        color="error"
+                        overlap="circular"
+                        sx={{
+                            "& .MuiBadge-badge": {
+                                minWidth: 6,
+                                width: 6,
+                                height: 6,
+                                right: 3,
+                                top: 4,
+                                backgroundColor: "var(--pri-500)",
+                            },
+                        }}
+                    >
+                        <NotificationsNoneOutlinedIcon sx={{ fontSize: 19 }} />
+                    </Badge>
+                </IconButton>
 
                 <IconButton
                     aria-label="Toggle theme"
                     onClick={handleThemeToggle}
-                    sx={{
-                        width: 38,
-                        height: 38,
-                        border: "1px solid var(--bd-light)",
-                        borderRadius: "var(--radius-md)",
-                        backgroundColor: "var(--bg-soft)",
-                        transition: "all 0.2s ease",
-                        "&:hover": {
-                            backgroundColor: "var(--bg-hover)",
-                        },
-                    }}
+                    className={styles.headerIconButton}
                 >
                     {isDarkMode ? (
                         <LightModeOutlinedIcon
                             sx={{
                                 color: "var(--txt-main)",
-                                fontSize: "var(--fs-xl)",
+                                fontSize: 19,
                             }}
                         />
                     ) : (
                         <DarkModeOutlinedIcon
                             sx={{
                                 color: "var(--txt-main)",
-                                fontSize: "var(--fs-xl)",
+                                fontSize: 19,
                             }}
                         />
                     )}
@@ -99,13 +120,12 @@ const Header = () => {
 
                 <Avatar
                     sx={{
-                        width: "2.4rem",
-                        height: "2.4rem",
-                        border: "1px solid var(--pri-200)",
-                        bgcolor: "var(--pri-100)",
-                        color: "var(--pri-700)",
-                        fontSize: "var(--fs-xl)",
-                        fontWeight: "var(--fw-medium)",
+                        width: 38,
+                        height: 38,
+                        bgcolor: "var(--pri-500)",
+                        color: "#fff",
+                        fontSize: 16,
+                        fontWeight: "var(--fw-semibold)",
                     }}
                 >
                     A
