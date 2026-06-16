@@ -8,6 +8,10 @@ const Dropdown = ({
   placeholder = "Select Option",
   className = "",
 }) => {
+  const isDarkMode =
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark");
+
   return (
     <Select
       value={value}
@@ -16,12 +20,13 @@ const Dropdown = ({
       className={`${styles.dropdown} ${className}`}
       MenuProps={{
         PaperProps: {
+          className: isDarkMode ? "dark" : "",
           sx: {
-             // gap between select and dropdown
             borderRadius: "var(--radius-md)",
             boxShadow: "var(--shadow-md)",
             backgroundColor: "var(--bg-card)",
             color: "var(--txt-main)",
+            border: "1px solid var(--bd-light)",
             overflow: "hidden",
           },
         },
@@ -73,12 +78,12 @@ const Dropdown = ({
             },
 
             "&.Mui-selected": {
-              backgroundColor: "var(--pri-100)",
+              backgroundColor: "var(--bg-soft)",
               color: "var(--txt-title)",
             },
 
             "&.Mui-selected:hover": {
-              backgroundColor: "var(--pri-200)",
+              backgroundColor: "var(--bg-hover)",
             },
           }}
         >

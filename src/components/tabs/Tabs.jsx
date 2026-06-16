@@ -1,6 +1,12 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, ButtonBase, IconButton, Typography } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import {
+  Box,
+  IconButton,
+  Tab,
+  Tabs as MuiTabs,
+  Typography,
+} from "@mui/material";
+import { useMemo, useState } from "react";
 
 import { apiRequestTabsConfig } from "../../config/tabs_config";
 import { styles } from "./styles";
@@ -16,15 +22,24 @@ const Tabs = ({
   className = "",
   panelClassName = "",
 }) => {
-  const [visibleTabs, setVisibleTabs] = useState(tabs);
+  const [tabsState, setTabsState] = useState({
+    sourceTabs: tabs,
+    visibleTabs: tabs,
+  });
+
+  if (tabsState.sourceTabs !== tabs) {
+    setTabsState({
+      sourceTabs: tabs,
+      visibleTabs: tabs,
+    });
+  }
+
+  const visibleTabs =
+    tabsState.sourceTabs === tabs ? tabsState.visibleTabs : tabs;
   const firstTabValue = visibleTabs[0]?.value;
   const [internalValue, setInternalValue] = useState(
     defaultValue || firstTabValue
   );
-
-  useEffect(() => {
-    setVisibleTabs(tabs);
-  }, [tabs]);
 
   const activeValue = value ?? internalValue;
 
@@ -34,7 +49,13 @@ const Tabs = ({
     [activeValue, visibleTabs]
   );
 
-  const handleTabChange = (nextTab) => {
+  const handleTabChange = (nextValue) => {
+    const nextTab = visibleTabs.find((tab) => tab.value === nextValue);
+
+    if (!nextTab) {
+      return;
+    }
+
     if (nextTab.disabled) {
       return;
     }
@@ -58,7 +79,10 @@ const Tabs = ({
     const nextActiveTab =
       nextTabs[closingIndex] || nextTabs[closingIndex - 1] || nextTabs[0];
 
-    setVisibleTabs(nextTabs);
+    setTabsState({
+      sourceTabs: tabs,
+      visibleTabs: nextTabs,
+    });
     onClose?.(closingTab.value, closingTab);
 
     if (closingTab.value === activeTab?.value) {
@@ -77,44 +101,52 @@ const Tabs = ({
 
   return (
     <Box className={`${styles.container} ${className}`}>
-      <Box role="tablist" className={styles.list}>
+      <MuiTabs
+        value={activeTab?.value ?? false}
+        onChange={(_, nextValue) => handleTabChange(nextValue)}
+        variant="scrollable"
+        scrollButtons="auto"
+        className={styles.list}
+        sx={{
+          minHeight: 42,
+          "& .MuiTabs-indicator": {
+            height: 2,
+            backgroundColor: "var(--pri-500)",
+          },
+          "& .MuiTabs-flexContainer": {
+            alignItems: "flex-end",
+            gap: "4px",
+          },
+        }}
+      >
         {visibleTabs.map((tab) => {
-          const isActive = tab.value === activeTab?.value;
-
           return (
-            <ButtonBase
+            <Tab
               key={tab.value}
-              role="tab"
-              aria-selected={isActive}
+              value={tab.value}
               disabled={tab.disabled}
-              onClick={() => handleTabChange(tab)}
-              className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
-            >
-              <Typography
-                component="span"
-                sx={{
-                  color: "inherit",
-                  fontSize: "inherit",
-                  fontWeight: "inherit",
-                  lineHeight: 1,
-                }}
-              >
-                {tab.label}
-              </Typography>
-              {closable && (
-                <IconButton
-                  aria-label={`Close ${tab.label}`}
-                  size="small"
-                  onClick={(event) => handleTabClose(event, tab)}
-                  className={styles.closeButton}
-                >
-                  <CloseIcon sx={{ fontSize: "var(--fs-sm)" }} />
-                </IconButton>
-              )}
-            </ButtonBase>
+              className={styles.tab}
+              label={
+                <Box className={styles.tabLabel}>
+                  <Typography component="span" className={styles.tabText}>
+                    {tab.label}
+                  </Typography>
+                  {closable && (
+                    <IconButton
+                      aria-label={`Close ${tab.label}`}
+                      size="small"
+                      onClick={(event) => handleTabClose(event, tab)}
+                      className={styles.closeButton}
+                    >
+                      <CloseIcon sx={{ fontSize: 12 }} />
+                    </IconButton>
+                  )}
+                </Box>
+              }
+            />
           );
         })}
-      </Box>
+      </MuiTabs>
 
       <Box role="tabpanel" className={`${styles.panel} ${panelClassName}`}>
         {content}

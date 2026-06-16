@@ -1,6 +1,6 @@
 export const styles = {
   background:
-    "w-full min-h-screen bg-page flex items-center px-4 flex-col",
+    "w-full min-h-screen flex items-center px-4 flex-col bg-[linear-gradient(180deg,#ffffff_0%,var(--pri-50)_55%,var(--pri-100)_100%)]",
   pageHeader: "mb-5 flex flex-col items-center",
   mainContainer:
     "w-full max-w-[450px] rounded-[var(--radius-lg)] flex items-center bg-card border border-border py-8 px-8 flex-col shadow-[var(--shadow-md)]",
