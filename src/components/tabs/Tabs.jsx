@@ -144,7 +144,7 @@ const Tabs = ({
                       onClick={(event) => handleTabClose(event, tab)}
                       className={styles.closeButton}
                     >
-                      <CloseIcon sx={{ fontSize: 12 }} />
+                      <CloseIcon sx={{ fontSize: "var(--fs-xs)" }} />
                     </IconButton>
                   )}
                 </Box>
@@ -157,7 +157,7 @@ const Tabs = ({
           value="__new_tab__"
           disabled
           className={`${styles.tab} ${styles.addTab}`}
-          label={<AddIcon sx={{ fontSize: 18 }} />}
+          label={<AddIcon sx={{ fontSize: "var(--fs-2xl)" }} />}
         />
       </MuiTabs>
 

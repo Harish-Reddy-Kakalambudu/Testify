@@ -1,18 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
 
   /* ---------- FONT ---------- */
 
-  --font-main: "Inter", sans-serif;
+  --font-main: "Poppins", sans-serif;
 
+  --fs-3xs: 9px;
+  --fs-2xs: 10px;
+  --fs-xxs: 11px;
   --fs-xs: 12px;
   --fs-sm: 13px;
   --fs-md: 14px;
   --fs-lg: 15px;
   --fs-xl: 16px;
   --fs-2xl: 18px;
+  --fs-3xl: 19px;
+  --fs-4xl: 20px;
+  --fs-5xl: 22px;
+  --fs-6xl: 24px;
 
   --fw-regular: 400;
   --fw-medium: 500;
@@ -106,6 +112,19 @@
   /* FONT */
 
   --font-sans: var(--font-main);
+  --text-fs-3xs: var(--fs-3xs);
+  --text-fs-2xs: var(--fs-2xs);
+  --text-fs-xxs: var(--fs-xxs);
+  --text-fs-xs: var(--fs-xs);
+  --text-fs-sm: var(--fs-sm);
+  --text-fs-md: var(--fs-md);
+  --text-fs-lg: var(--fs-lg);
+  --text-fs-xl: var(--fs-xl);
+  --text-fs-2xl: var(--fs-2xl);
+  --text-fs-3xl: var(--fs-3xl);
+  --text-fs-4xl: var(--fs-4xl);
+  --text-fs-5xl: var(--fs-5xl);
+  --text-fs-6xl: var(--fs-6xl);
 
   /* PRIMARY */
 
@@ -150,6 +169,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: var(--font-main);
 }
 
 html,
@@ -166,4 +186,11 @@ body {
   font-weight: var(--fw-regular);
   color: var(--txt-main);
   background: var(--bg-page);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

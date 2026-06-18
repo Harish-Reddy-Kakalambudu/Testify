@@ -1,12 +1,11 @@
-import { useState } from "react";
-import {Box,Typography} from "@mui/material"
+import {Box} from "@mui/material"
 import {styles} from "./styles"
-
+import CollectionsSidebar from "./components/sidebar/CollectionsSidebar";
 const Collections = ()=>{
 
     return(
         <Box className={styles.container}>
-            <Typography className={styles.text}> Collections Page</Typography>
+            <CollectionsSidebar/>
         </Box>
     )
 } 

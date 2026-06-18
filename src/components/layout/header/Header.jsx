@@ -53,9 +53,12 @@ const Header = () => {
                 <Typography className={styles.brandName}>
                     Testify
                 </Typography>
-                <Typography className={styles.dateTime}>
+                <Box className={"ml-4"}>
+                    <Typography className={styles.dateTime}>
                     {date} | {currentTime}
                 </Typography>
+                </Box>
+                
             </Box>
 
             <Box className={styles.centerSection}>
@@ -92,7 +95,7 @@ const Header = () => {
                             },
                         }}
                     >
-                        <NotificationsNoneOutlinedIcon sx={{ fontSize: 19 }} />
+                        <NotificationsNoneOutlinedIcon sx={{ fontSize: "var(--fs-3xl)" }} />
                     </Badge>
                 </IconButton>
 
@@ -105,14 +108,14 @@ const Header = () => {
                         <LightModeOutlinedIcon
                             sx={{
                                 color: "var(--txt-main)",
-                                fontSize: 19,
+                                fontSize: "var(--fs-3xl)",
                             }}
                         />
                     ) : (
                         <DarkModeOutlinedIcon
                             sx={{
                                 color: "var(--txt-main)",
-                                fontSize: 19,
+                                fontSize: "var(--fs-3xl)",
                             }}
                         />
                     )}
@@ -124,7 +127,7 @@ const Header = () => {
                         height: 38,
                         bgcolor: "var(--pri-500)",
                         color: "#fff",
-                        fontSize: 16,
+                        fontSize: "var(--fs-xl)",
                         fontWeight: "var(--fw-semibold)",
                     }}
                 >

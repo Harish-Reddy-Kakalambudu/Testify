@@ -12,12 +12,12 @@ const renderIcon = (icon) => {
 
   if (isValidElement(icon)) {
     return cloneElement(icon, {
-      sx: { color: "var(--txt-sub)", fontSize: "20px", ...icon.props.sx },
+      sx: { color: "var(--txt-sub)", fontSize: "var(--fs-4xl)", ...icon.props.sx },
     });
   }
 
   return createElement(icon, {
-    sx: { color: "var(--txt-sub)", fontSize: "20px" },
+    sx: { color: "var(--txt-sub)", fontSize: "var(--fs-4xl)" },
   });
 };
 

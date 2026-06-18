@@ -1,6 +1,7 @@
 export const styles = {
   container: `
     w-[80px]
+    px-1
     border-r
     border-border
     flex
@@ -21,8 +22,9 @@ export const styles = {
   `,
 
   menuItem: `
-    w-[64px]
+    w-full
     min-h-[55px]
+    px-1
     rounded-[8px]
     flex
     flex-col
@@ -36,6 +38,7 @@ export const styles = {
     hover:text-title
     transition-all
     duration-200
+    overflow-hidden
   `,
 
   activeMenuItem: `
@@ -44,10 +47,14 @@ export const styles = {
   `,
 
   label: `
-    !text-[12px]
-    !leading-[14px]
+    w-full
+    max-w-full
+    !text-fs-2xs
+    !leading-[12px]
     !text-inherit
     !font-medium
     !text-center
+    whitespace-nowrap
+    overflow-hidden
   `,
 };

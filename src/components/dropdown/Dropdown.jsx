@@ -54,7 +54,7 @@ const Dropdown = ({
       renderValue={(selected) => {
         if (!selected) {
           return (
-            <span className="text-sub text-[var(--fs-sm)]">
+            <span className="text-sub text-fs-sm">
               {placeholder}
             </span>
           );

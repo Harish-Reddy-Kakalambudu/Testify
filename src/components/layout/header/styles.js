@@ -16,19 +16,19 @@ export const styles = {
     min-w-[330px]
     flex
     items-center
-    gap-2
+    gap-1
   `,
 
   brandMark: `
-    w-[34px]
-    h-[34px]
+    w-[28px]
+    h-[28px]
     [&_img]:w-full
     [&_img]:h-full
     [&_img]:object-contain
   `,
 
   brandName: `
-    !text-[20px]
+    !text-fs-3xl
     !leading-none
     !font-bold
     !text-title
@@ -36,7 +36,7 @@ export const styles = {
   `,
 
   dateTime: `
-    !text-[15px]
+    !text-fs-sm
     !text-sub
     !font-medium
     !leading-none
@@ -49,7 +49,7 @@ export const styles = {
   `,
 
   workspaceName: `
-    !text-[16px]
+    !text-fs-xl
     !font-bold
     !text-title
     !leading-none

@@ -7,17 +7,17 @@ import { PageNames } from "../routes/PageNames";
 export const SidebarMenu = [
     {
         link: PageNames.COLLECTIONS,
-        icon: <FolderOutlinedIcon fontSize="small" />,
+        icon: <FolderOutlinedIcon sx={{ fontSize: "var(--fs-4xl)" }} />,
         name: "Collections",
     },
     {
         link: PageNames.ENVIRONMENTS,
-        icon: <TuneOutlinedIcon fontSize="small" />,
+        icon: <TuneOutlinedIcon sx={{ fontSize: "var(--fs-4xl)" }} />,
         name: "Environments",
     },
     {
         link: PageNames.HISTORY,
-        icon: <HistoryOutlinedIcon fontSize="small" />,
+        icon: <HistoryOutlinedIcon sx={{ fontSize: "var(--fs-4xl)" }} />,
         name: "History",
     },
 ];

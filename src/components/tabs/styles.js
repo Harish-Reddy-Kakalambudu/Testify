@@ -24,7 +24,7 @@ export const styles = {
     !py-0
     !normal-case
     !text-main
-    !text-[15px]
+    !text-fs-lg
     !font-medium
     !border-r
     !border-border
@@ -51,14 +51,14 @@ export const styles = {
   `,
 
   tabText: `
-    !text-[15px]
+    !text-fs-lg
     !font-inherit
     !leading-none
     truncate
   `,
 
   methodText: `
-    !text-[9px]
+    !text-fs-3xs
     !font-bold
     !leading-none
     !font-mono
