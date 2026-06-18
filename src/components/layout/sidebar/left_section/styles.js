@@ -30,6 +30,7 @@ export const styles = {
     justify-center
     gap-1
     cursor-pointer
+    no-underline
     text-sub
     hover:bg-hover
     hover:text-title

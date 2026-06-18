@@ -1,7 +1,7 @@
 export const styles = {
   header: `
     w-full
-    h-[58px]
+    h-[50px]
     bg-card
     border-b
     border-border

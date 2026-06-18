@@ -1,6 +1,10 @@
-const basePath = "tesify"
+const basePath = "/testify"
 export const PageNames = {
-    HOME:`${basePath}/home`,
-    SIGNIN:`${basePath}/sign-in`,
-    SIGNUP:`${basePath}/sign-up`,
+    BASE: basePath,
+    HOME: `${basePath}/home`,
+    SIGNIN: `${basePath}/sign-in`,
+    SIGNUP: `${basePath}/sign-up`,
+    COLLECTIONS : `${basePath}/collections`,
+    ENVIRONMENTS: `${basePath}/environments`,
+    HISTORY : `${basePath}/history`,
 }

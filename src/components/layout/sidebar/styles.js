@@ -1,6 +1,6 @@
 export const styles = {
   sidebar: `
-    w-[380px]
+    w-[80px]
     h-full
     bg-card
     border-r
@@ -12,6 +12,7 @@ export const styles = {
   content: `
     flex-1
     flex
+    flex-col
     overflow-hidden
   `,
 };
