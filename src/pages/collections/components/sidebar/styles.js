@@ -13,8 +13,6 @@ export const styles = {
     controls: `
         min-h-[45px]
         px-2
-        border-b
-        border-border
         bg-card
         flex
         items-center
@@ -28,6 +26,10 @@ export const styles = {
 
     searchInput: `
         shrink
+    `,
+
+    filterButton: `
+        shrink-0
     `,
 
     actions: `

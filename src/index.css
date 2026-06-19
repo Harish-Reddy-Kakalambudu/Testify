@@ -36,6 +36,7 @@
   --pri-600: #CD584E;
   --pri-700: #B34037;
   --pri-800: #922D25;
+  --pri-on: #FFFFFF;
 
   /* ---------- TEXT ---------- */
 
@@ -46,7 +47,7 @@
 
   /* ---------- BACKGROUNDS ---------- */
 
-  --bg-page: #F9FAFB;
+  --bg-page: #F9F9F9;
   --bg-card: #FFFFFF;
   --bg-soft: #F3F4F6;
   --bg-hover: #EEF2F7;
@@ -79,6 +80,19 @@
 }
 
 .dark {
+
+  /* ---------- PRIMARY ---------- */
+
+  --pri-50: #052E2B;
+  --pri-100: #064E3B;
+  --pri-200: #065F46;
+  --pri-300: #047857;
+  --pri-400: #059669;
+  --pri-500: #10B981; /* Dark Brand */
+  --pri-600: #34D399;
+  --pri-700: #6EE7B7;
+  --pri-800: #A7F3D0;
+  --pri-on: #042F2E;
 
   /* ---------- TEXT ---------- */
 

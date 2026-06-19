@@ -3,9 +3,10 @@ import { Box, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import Button from "../../../../components/button/Button";
+import IconButton from "../../../../components/icon_button";
 import SearchFilter from "../../../../components/search_filter";
 import {collections} from "../../../../config/collections_config.js"
 import { styles } from "./styles";
@@ -51,19 +52,9 @@ const CollectionsSidebar = () => {
 
   return (
     <Box className={styles.container}>
-      <Box className={styles.controls}>
-        <Box className={styles.searchBox}>
-          <SearchFilter
-            className={styles.searchInput}
-            width="100%"
-            height="30px"
-          value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
-            placeholder="Filter..."
-        />
-        </Box>
-
-        <Box className={styles.actions}>
+      <Box className={"flex items-center justify-between p-2 border-b border-border-main"}>
+          <Typography>Collections</Typography>
+          <Box className={styles.actions}>
           <Button
             label="Import"
             color="var(--txt-title)"
@@ -78,6 +69,26 @@ const CollectionsSidebar = () => {
           />
         </Box>
       </Box>
+      <Box className={styles.controls}>
+        <Box className={styles.searchBox}>
+          <SearchFilter
+            className={styles.searchInput}
+            width="100%"
+            height="30px"
+            value={searchText}
+            onChange={(event) => setSearchText(event.target.value)}
+            placeholder="Filter..."
+          />
+        </Box>
+        <IconButton
+          aria-label="Filter collections"
+          icon={<TuneOutlinedIcon />}
+          tooltip
+          tooltipTitle="Filter collections"
+          border
+          className={styles.filterButton}
+        />
+      </Box>
 
       <Box className={styles.collectionList}>
         {filteredCollections.map((collection) => {
@@ -91,9 +102,9 @@ const CollectionsSidebar = () => {
               >
                 <Box className={styles.collectionTitleWrap}>
                   {isOpen ? (
-                    <KeyboardArrowUpOutlinedIcon className={styles.arrowIcon} />
-                  ) : (
                     <KeyboardArrowDownOutlinedIcon className={styles.arrowIcon} />
+                  ) : (
+                    <KeyboardArrowRightIcon className={styles.arrowIcon} />
                   )}
                   <FolderOutlinedIcon className={styles.folderIcon} />
                   <Typography className={styles.collectionTitle}>

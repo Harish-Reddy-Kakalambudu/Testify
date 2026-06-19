@@ -8,9 +8,27 @@ const Dropdown = ({
   placeholder = "Select Option",
   className = "",
 }) => {
-  const isDarkMode =
-    typeof document !== "undefined" &&
-    document.documentElement.classList.contains("dark");
+  const menuItemStyles = {
+    minHeight: "36px",
+    transition: "all 0.2s ease",
+    color: "var(--txt-main)",
+    backgroundColor: "var(--bg-card)",
+    fontSize: "var(--fs-sm)",
+    "&:hover": {
+      backgroundColor: "var(--bg-hover)",
+      color: "var(--txt-title)",
+    },
+    "&.Mui-focusVisible": {
+      backgroundColor: "var(--bg-hover)",
+    },
+    "&.Mui-selected": {
+      backgroundColor: "var(--bg-soft)",
+      color: "var(--txt-title)",
+    },
+    "&.Mui-selected:hover": {
+      backgroundColor: "var(--bg-hover)",
+    },
+  };
 
   return (
     <Select
@@ -20,7 +38,6 @@ const Dropdown = ({
       className={`${styles.dropdown} ${className}`}
       MenuProps={{
         PaperProps: {
-          className: isDarkMode ? "dark" : "",
           sx: {
             borderRadius: "var(--radius-md)",
             boxShadow: "var(--shadow-md)",
@@ -28,6 +45,13 @@ const Dropdown = ({
             color: "var(--txt-main)",
             border: "1px solid var(--bd-light)",
             overflow: "hidden",
+          },
+        },
+        MenuListProps: {
+          sx: {
+            padding: 0,
+            backgroundColor: "var(--bg-card)",
+            "& .MuiMenuItem-root": menuItemStyles,
           },
         },
         transitionDuration: 250,
@@ -69,23 +93,7 @@ const Dropdown = ({
         <MenuItem
           key={option.value}
           value={option.value}
-          sx={{
-            transition: "all 0.2s ease",
-            color: "var(--txt-main)",
-            fontSize: "var(--fs-sm)",
-            "&:hover": {
-              backgroundColor: "var(--bg-hover)",
-            },
-
-            "&.Mui-selected": {
-              backgroundColor: "var(--bg-soft)",
-              color: "var(--txt-title)",
-            },
-
-            "&.Mui-selected:hover": {
-              backgroundColor: "var(--bg-hover)",
-            },
-          }}
+          sx={menuItemStyles}
         >
           {option.label}
         </MenuItem>

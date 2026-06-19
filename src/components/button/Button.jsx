@@ -41,7 +41,7 @@ const Button = ({
         fontWeight: "600",
         height,
         width,
-        color: color || "#fff",
+        color: color || "var(--pri-on)",
         textTransform: "capitalize",
         outline: "none",
         transition: "all 0.3s ease",

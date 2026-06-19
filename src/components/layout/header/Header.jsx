@@ -126,7 +126,7 @@ const Header = () => {
                         width: 38,
                         height: 38,
                         bgcolor: "var(--pri-500)",
-                        color: "#fff",
+                        color: "var(--pri-on)",
                         fontSize: "var(--fs-xl)",
                         fontWeight: "var(--fw-semibold)",
                     }}
