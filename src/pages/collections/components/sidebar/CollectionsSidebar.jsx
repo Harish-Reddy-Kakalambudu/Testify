@@ -81,10 +81,10 @@ const CollectionsSidebar = () => {
           />
         </Box>
         <IconButton
-          aria-label="Filter collections"
-          icon={<TuneOutlinedIcon />}
+          aria-label="Add to collections"
+          icon={<AddIcon />}
           tooltip
-          tooltipTitle="Filter collections"
+          tooltipTitle="Add to collections"
           border
           className={styles.filterButton}
         />

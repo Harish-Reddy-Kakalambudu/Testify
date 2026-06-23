@@ -27,3 +27,22 @@ export const collections = [
     ],
   },
 ];
+
+export const ConfigDropdownOptions=[
+  {
+    label:"POST",
+    value:"POST"
+  },
+  {
+    label:"GET",
+    value:"GET"
+  },
+  {
+    label:"PUT",
+    value:"PUT"
+  },
+  {
+    label:"DELETE",
+    value:"DELETE"
+  }
+]

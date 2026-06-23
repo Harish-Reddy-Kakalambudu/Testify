@@ -1,14 +1,10 @@
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
-import {
-  Box,
-  IconButton,
-  Tab,
-  Tabs as MuiTabs,
-  Typography,
-} from "@mui/material";
+import { Box, Tab, Tabs as MuiTabs, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
 
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+
+import IconButton from "../icon_button/IconButton";
 import { apiRequestTabsConfig } from "../../config/tabs_config";
 import { styles } from "./styles";
 
@@ -18,6 +14,7 @@ const Tabs = ({
   defaultValue,
   onChange,
   onClose,
+  onAdd,
   closable = false,
   children,
   className = "",
@@ -37,7 +34,9 @@ const Tabs = ({
 
   const visibleTabs =
     tabsState.sourceTabs === tabs ? tabsState.visibleTabs : tabs;
+
   const firstTabValue = visibleTabs[0]?.value;
+
   const [internalValue, setInternalValue] = useState(
     defaultValue || firstTabValue
   );
@@ -51,13 +50,11 @@ const Tabs = ({
   );
 
   const handleTabChange = (nextValue) => {
-    const nextTab = visibleTabs.find((tab) => tab.value === nextValue);
+    const nextTab = visibleTabs.find(
+      (tab) => tab.value === nextValue
+    );
 
-    if (!nextTab) {
-      return;
-    }
-
-    if (nextTab.disabled) {
+    if (!nextTab || nextTab.disabled) {
       return;
     }
 
@@ -74,16 +71,21 @@ const Tabs = ({
     const closingIndex = visibleTabs.findIndex(
       (tab) => tab.value === closingTab.value
     );
+
     const nextTabs = visibleTabs.filter(
       (tab) => tab.value !== closingTab.value
     );
+
     const nextActiveTab =
-      nextTabs[closingIndex] || nextTabs[closingIndex - 1] || nextTabs[0];
+      nextTabs[closingIndex] ||
+      nextTabs[closingIndex - 1] ||
+      nextTabs[0];
 
     setTabsState({
       sourceTabs: tabs,
       visibleTabs: nextTabs,
     });
+
     onClose?.(closingTab.value, closingTab);
 
     if (closingTab.value === activeTab?.value) {
@@ -98,70 +100,151 @@ const Tabs = ({
   };
 
   const content =
-    typeof children === "function" ? children(activeTab) : children;
+    typeof children === "function"
+      ? children(activeTab)
+      : children;
 
   return (
     <Box className={`${styles.container} ${className}`}>
-      <MuiTabs
-        value={activeTab?.value ?? false}
-        onChange={(_, nextValue) => handleTabChange(nextValue)}
-        variant="scrollable"
-        scrollButtons="auto"
-        className={styles.list}
-        sx={{
-          minHeight: 42,
-          "& .MuiTabs-indicator": {
-            height: 2,
-            backgroundColor: "var(--pri-500)",
-          },
-          "& .MuiTabs-flexContainer": {
-            alignItems: "flex-end",
-            gap: "4px",
-          },
-        }}
-      >
-        {visibleTabs.map((tab) => {
-          return (
+      <Box className={styles.header}>
+        <MuiTabs
+          value={activeTab?.value ?? false}
+          onChange={(_, nextValue) =>
+            handleTabChange(nextValue)
+          }
+          variant="scrollable"
+          scrollButtons="auto"
+          className={styles.list}
+          sx={{
+            minHeight: 42,
+
+            "& .MuiTabs-indicator": {
+              height: "2px",
+              backgroundColor: "var(--pri-500)",
+            },
+
+            "& .MuiTabs-scrollButtons": {
+              width: "32px",
+            },
+
+            "& .MuiTabs-flexContainer": {
+              gap: 0,
+            },
+          }}
+        >
+          {visibleTabs.map((tab) => (
             <Tab
               key={tab.value}
               value={tab.value}
-              disabled={tab.disabled}
+              disableRipple
               className={styles.tab}
+              sx={{
+                minHeight: 42,
+                height: 42,
+
+                borderRight: "1px solid var(--bd-light)",
+
+                transition: "all .2s ease",
+
+                "&:hover": {
+                  backgroundColor: "var(--bg-hover)",
+                },
+
+                "&.Mui-selected": {
+                  backgroundColor: "var(--bg-card)",
+                  color: "var(--txt-title)",
+                },
+
+                "&.Mui-focusVisible": {
+                  outline: "none",
+                  backgroundColor: "transparent",
+                },
+
+                "&:focus": {
+                  outline: "none",
+                },
+
+                "& .tab-close": {
+                  opacity: 0,
+                },
+
+                "&:hover .tab-close": {
+                  opacity: 1,
+                },
+
+                "&.Mui-selected .tab-close": {
+                  opacity: 1,
+                },
+              }}
               label={
                 <Box className={styles.tabLabel}>
                   {tab.method && (
-                    <Typography component="span" className={`${styles.methodText} ${styles[`method${tab.method}`] || ""}`}>
+                    <Typography
+                      component="span"
+                      className={`${styles.methodText} ${styles[
+                        `method${tab.method}`
+                      ] || ""
+                        }`}
+                    >
                       {tab.method}
                     </Typography>
                   )}
-                  <Typography component="span" className={styles.tabText}>
+
+                  <Typography
+                    component="span"
+                    className={styles.tabText}
+                  >
                     {tab.label}
                   </Typography>
+
                   {closable && (
-                    <IconButton
-                      aria-label={`Close ${tab.label}`}
-                      size="small"
-                      onClick={(event) => handleTabClose(event, tab)}
-                      className={styles.closeButton}
+                    <Box
+                      className="tab-close"
+                      sx={{
+                        marginLeft: "auto",
+                        transition: "opacity .2s ease",
+                      }}
                     >
-                      <CloseIcon sx={{ fontSize: "var(--fs-xs)" }} />
-                    </IconButton>
+                      <IconButton
+                        icon={CloseIcon}
+                        tooltip={false}
+                        width="16px"
+                        height="16px"
+                        color="var(--txt-sub)"
+                        onClick={(event) =>
+                          handleTabClose(event, tab)
+                        }
+                      />
+                    </Box>
                   )}
                 </Box>
               }
             />
-          );
-        })}
-        <Tab
-          aria-label="New tab"
-          value="__new_tab__"
-          disabled
-          className={`${styles.tab} ${styles.addTab}`}
-          label={<AddIcon sx={{ fontSize: "var(--fs-2xl)" }} />}
-        />
-      </MuiTabs>
+          ))}
+        </MuiTabs>
 
-      <Box role="tabpanel" className={`${styles.panel} ${panelClassName}`}>
+        <Box
+          sx={{
+            width: "42px",
+            height: "42px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderLeft: "1px solid var(--bd-light)",
+          }}
+        >
+          <IconButton
+            icon={AddIcon}
+            tooltipTitle="New Request"
+            onClick={onAdd}
+          />
+        </Box>
+      </Box>
+
+      <Box
+        role="tabpanel"
+        className={`${styles.panel} ${panelClassName}`}
+      >
         {content}
       </Box>
     </Box>

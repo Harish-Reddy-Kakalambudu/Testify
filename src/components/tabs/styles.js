@@ -1,91 +1,69 @@
 export const styles = {
   container: `
     w-full
+    h-full
     flex
     flex-col
+  `,
+
+  header: `
+    w-full
+    h-[42px]
+    flex
+    items-center
     bg-card
-    text-main
+    border-b
+    border-border
   `,
 
   list: `
-    w-full
-    min-h-[50px]
-    border-b
-    !border-border
-    !bg-card
-    !px-0
+    flex-1
   `,
 
   tab: `
-    !min-h-[50px]
-    !h-[50px]
-    !min-w-0
-    !px-4
-    !py-0
+    !min-h-[42px]
+    !h-[42px]
     !normal-case
-    !text-main
-    !text-fs-lg
-    !font-medium
-    !border-r
-    !border-border
-    !rounded-none
-    hover:!bg-hover
-    hover:!text-title
-    [&.Mui-selected]:!text-title
-    [&.Mui-selected]:!font-semibold
-  `,
-
-  panel: `
-    w-full
-    flex-1
-    bg-card
-    text-main
+    !px-0
+    !py-0
   `,
 
   tabLabel: `
     flex
+    flex-row
     items-center
-    gap-1.5
-    min-w-0
-    leading-none
+    gap-2
+    px-3
+    h-full
+    min-w-[140px]
+    max-w-[220px]
+    whitespace-nowrap
   `,
 
   tabText: `
-    !text-fs-lg
-    !font-inherit
-    !leading-none
+    !text-[13px]
+    !font-medium
+    !text-main
     truncate
+    max-w-[120px]
   `,
 
   methodText: `
-    !text-fs-3xs
+    !text-[10px]
     !font-bold
-    !leading-none
-    !font-mono
     uppercase
+    tracking-wide
+    shrink-0
   `,
 
-  methodGET: "!text-[#2563eb]",
-  methodPOST: "!text-[#00a86b]",
-  methodPUT: "!text-[#f59e0b]",
-  methodPATCH: "!text-[#8b5cf6]",
-  methodDELETE: "!text-[#ef4444]",
+  methodGET: `!text-get`,
+  methodPOST: `!text-post`,
+  methodPUT: `!text-put`,
+  methodPATCH: `!text-patch`,
+  methodDELETE: `!text-delete`,
 
-  addTab: `
-    !w-[56px]
-    !min-w-[56px]
-    !text-sub
-  `,
-
-  closeButton: `
-    !w-[15px]
-    !h-[15px]
-    !min-w-[15px]
-    !p-0
-    !ml-0.5
-    !text-sub
-    !rounded-sm
-    hover:!bg-soft
-    hover:!text-title
+  panel: `
+    flex-1
+    overflow-hidden
   `,
 };
