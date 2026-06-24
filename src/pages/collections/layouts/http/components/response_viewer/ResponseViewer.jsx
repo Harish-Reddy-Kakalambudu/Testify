@@ -1,20 +1,29 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useState } from "react";
-
-import Editor from "../../../../../../components/editor/Editor";
 
 import ResponseHeader from "./layouts/ResponseHeader";
 import ResponseTabs from "./layouts/ResponseTabs";
+
+import ResponsePanel from "./layouts/panels/ResponsePanel";
+import HeadersPanel from "./layouts/panels/HeadersPanel";
+import CookiesPanel from "./layouts/panels/CookiesPanel";
+import TestsPanel from "./layouts/panels/TestsPanel";
+import ConsolePanel from "./layouts/panels/ConsolePanel";
+import EmptyResponse from "./layouts/EmptyRespnse";
 
 const ResponseViewer = () => {
   const [activeTab, setActiveTab] =
     useState("Response");
 
-  const [response] = useState(`{
-  "success": true,
-  "message": "Login successful",
-  "token": "jwt_token_here"
-}`);
+  const hasResponse = true;
+
+  const panelMap = {
+    Response: <ResponsePanel />,
+    Headers: <HeadersPanel />,
+    Cookies: <CookiesPanel />,
+    Tests: <TestsPanel />,
+    Console: <ConsolePanel />,
+  };
 
   return (
     <Box
@@ -39,33 +48,9 @@ const ResponseViewer = () => {
       />
 
       <Box className="flex-1 overflow-hidden">
-
-        {activeTab === "Response" && (
-          <Editor
-            language="json"
-            value={response}
-            readOnly
-          />
-        )}
-
-        {activeTab === "Headers" && (
-          <Box className="p-4 text-main">
-            Response Headers
-          </Box>
-        )}
-
-        {activeTab === "Cookies" && (
-          <Box className="p-4 text-main">
-            Response Cookies
-          </Box>
-        )}
-
-        {activeTab === "Console" && (
-          <Box className="p-4 text-main">
-            Console Output
-          </Box>
-        )}
-
+        {hasResponse
+          ? panelMap[activeTab]
+          : <EmptyResponse />}
       </Box>
     </Box>
   );
