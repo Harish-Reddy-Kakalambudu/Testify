@@ -1,18 +1,24 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
-import RequestBar from "./components/request_bar/RequestBar";
-import RequestConfigTabs from "./components/request_config_tabs/RequestConfigsBar";
-import RequestEditor from "./components/request_editor/RequestEditor";
-import RequestContent from "./components/request_content/RequestContent";
-import ResponseViewer from "./components/response_viewer/ResponseViewer";
+import Dropdown from "../../../../components/dropdown/Dropdown";
+import { ConfigDropdownOptions } from "../../../../config/collections_config";
+import TextField from "../../../../components/textfield/TextField";
+import Button from "../../../../components/button/Button";
 
-const HttpLayout = () => {
-    return (
-        <Box className="w-full h-full flex flex-col">
-            <RequestBar />
-            <RequestContent/>
-            <ResponseViewer />
-
+const HttpLayout =()=>{
+    const [activeOption,setActiveOption] = useState("POST")
+    return(
+        <Box className="flex gap-2 h-13 w-full border-b border-r  border-border-main bg-card px-3 py-2">
+            <Box className="flex items-center">
+                <Dropdown options={ConfigDropdownOptions} value={activeOption} onChange={setActiveOption}/>
+            </Box>
+            <Box className="flex flex-1">
+                <TextField placeholder={"http://abc.com"} className="bg-page"/>
+            </Box>
+            <Box className="flex gap-1 items-center">
+                <Button label="Save" height="100%"/>
+                <Button label="Send" height="100%"/>
+            </Box>
         </Box>
     )
 }

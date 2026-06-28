@@ -66,7 +66,7 @@ const TextField = ({
         "& .MuiOutlinedInput-root": {
           height,
           borderRadius: "var(--radius-md)",
-          backgroundColor: "var(--bg-card)",
+          backgroundColor: "var(--bg-page)",
         },
         "& .MuiOutlinedInput-notchedOutline": {
           borderColor: "var(--bd-light)",
@@ -82,6 +82,7 @@ const TextField = ({
           fontSize: "var(--fs-md)",
           paddingTop: 0,
           paddingBottom: 0,
+          backgroundColor:"var(--bg-page)"
         },
         "& .MuiInputBase-input::placeholder": {
           color: "var(--txt-sub)",
