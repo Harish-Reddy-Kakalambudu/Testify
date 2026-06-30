@@ -8,7 +8,7 @@ const RequestLayout = () => {
 
     return (
         <Box className="flex h-[30px] w-full border-x border-border-main">
-            <Box className="bg-card">
+            <Box className="bg-card w-full">
                 <SimpleTabs tabs={RequestTabs} activeTab={activeTab} onChange={setActiveTab} />
             </Box>
 

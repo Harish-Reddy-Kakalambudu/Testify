@@ -1,17 +1,17 @@
 export const apiRequestTabsConfig = [
   {
-    value: "1",
-    label: "Get Users",
+    id: "1",
+    title: "Get Users",
     method: "GET",
   },
   {
-    value: "2",
-    label: "Login",
+    id: "2",
+    title: "Login",
     method: "POST",
   },
   {
-    value: "3",
-    label: "Update User",
+    id: "3",
+    title: "Update User",
     method: "PUT",
   },
 ];

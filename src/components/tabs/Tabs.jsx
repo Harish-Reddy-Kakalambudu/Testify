@@ -1,5 +1,4 @@
 import { Box, Tab, Tabs as MuiTabs, Typography } from "@mui/material";
-
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -7,23 +6,22 @@ import IconButton from "../icon_button/IconButton";
 import { styles } from "./styles";
 
 const Tabs = ({
-  data = [],
-  value,
-  onChange,
-  onClose,
-  onAdd,
-  closable = true,
+  tabs = [],
+  activeTab,
+  onTabChange,
+  onTabClose,
+  onTabAdd,
   className = "",
 }) => {
   return (
     <Box className={`${styles.container} ${className}`}>
       <Box className={styles.header}>
         <MuiTabs
-          value={value}
-          onChange={(_, nextValue) => onChange?.(nextValue)}
+          value={activeTab}
+          onChange={(_, value) => onTabChange?.(value)}
           variant="scrollable"
           scrollButtons="auto"
-          className={styles.list}
+          className={styles.tabs}
           sx={{
             minHeight: 42,
 
@@ -31,13 +29,9 @@ const Tabs = ({
               height: 2,
               backgroundColor: "var(--pri-500)",
             },
-
-            "& .MuiTabs-flexContainer": {
-              gap: 0,
-            },
           }}
         >
-          {data.map((tab) => (
+          {tabs.map((tab) => (
             <Tab
               key={tab.id}
               value={tab.id}
@@ -46,7 +40,7 @@ const Tabs = ({
               sx={{
                 minHeight: 42,
                 height: 42,
-
+                px: 1.5,
                 borderRight: "1px solid var(--bd-light)",
 
                 "&:hover": {
@@ -64,52 +58,44 @@ const Tabs = ({
                 "&:hover .tab-close": {
                   opacity: 1,
                 },
-
-                "&.Mui-selected .tab-close": {
-                  opacity: 1,
-                },
               }}
               label={
-                <Box className={styles.tabLabel}>
-                  {tab.method && (
-                    <Typography
-                      component="span"
-                      className={`${styles.methodText} ${
-                        styles[`method${tab.method}`] || ""
-                      }`}
-                    >
-                      {tab.method}
-                    </Typography>
-                  )}
+                <Box className={styles.tabContent}>
+                  <Typography
+                    component="span"
+                    className={`${styles.method} ${
+                      styles[`method${tab.method}`]
+                    }`}
+                  >
+                    {tab.method}
+                  </Typography>
 
                   <Typography
                     component="span"
-                    className={styles.tabText}
+                    className={styles.title}
                   >
-                    {tab.label}
+                    {tab.title}
                   </Typography>
 
-                  {closable && (
-                    <Box
-                      className="tab-close"
-                      sx={{
-                        ml: "auto",
-                        transition: "opacity .2s",
+                  <Box
+                    className="tab-close"
+                    sx={{
+                      ml: 1,
+                      transition: "opacity .2s",
+                    }}
+                  >
+                    <IconButton
+                      icon={CloseIcon}
+                      tooltip={false}
+                      width="16px"
+                      height="16px"
+                      color="var(--txt-sub)"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onTabClose?.(tab.id);
                       }}
-                    >
-                      <IconButton
-                        icon={CloseIcon}
-                        tooltip={false}
-                        width="16px"
-                        height="16px"
-                        color="var(--txt-sub)"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onClose?.(tab.id);
-                        }}
-                      />
-                    </Box>
-                  )}
+                    />
+                  </Box>
                 </Box>
               }
             />
@@ -119,17 +105,18 @@ const Tabs = ({
         <Box
           sx={{
             width: 42,
+            minWidth: 42,
             height: 42,
+            borderLeft: "1px solid var(--bd-light)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            borderLeft: "1px solid var(--bd-light)",
           }}
         >
           <IconButton
             icon={AddIcon}
-            tooltipTitle="New Request"
-            onClick={onAdd}
+            tooltip={false}
+            onClick={onTabAdd}
           />
         </Box>
       </Box>

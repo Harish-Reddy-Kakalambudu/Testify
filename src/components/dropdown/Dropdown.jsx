@@ -1,4 +1,11 @@
-import { Select, MenuItem } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+  Box,
+  Popover,
+  Typography,
+} from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import { styles } from "./styles";
 
 const Dropdown = ({
@@ -8,97 +15,87 @@ const Dropdown = ({
   placeholder = "Select Option",
   className = "",
 }) => {
-  const menuItemStyles = {
-    minHeight: "36px",
-    transition: "all 0.2s ease",
-    color: "var(--txt-main)",
-    backgroundColor: "var(--bg-card)",
-    fontSize: "var(--fs-sm)",
-    "&:hover": {
-      backgroundColor: "var(--bg-hover)",
-      color: "var(--txt-title)",
-    },
-    "&.Mui-focusVisible": {
-      backgroundColor: "var(--bg-hover)",
-    },
-    "&.Mui-selected": {
-      backgroundColor: "var(--bg-soft)",
-      color: "var(--txt-title)",
-    },
-    "&.Mui-selected:hover": {
-      backgroundColor: "var(--bg-hover)",
-    },
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const open = Boolean(anchorEl);
+
+  const selectedOption = useMemo(
+    () => options.find((option) => option.value === value),
+    [options, value]
+  );
+
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSelect = (option) => {
+    onChange?.(option.value);
+    handleClose();
   };
 
   return (
-    <Select
-      value={value}
-      displayEmpty
-      onChange={(e) => onChange(e.target.value)}
-      className={`${styles.dropdown} ${className}`}
-      MenuProps={{
-        PaperProps: {
-          sx: {
-            borderRadius: "var(--radius-md)",
-            boxShadow: "var(--shadow-md)",
-            backgroundColor: "var(--bg-card)",
-            color: "var(--txt-main)",
-            border: "1px solid var(--bd-light)",
-            overflow: "hidden",
-          },
-        },
-        MenuListProps: {
-          sx: {
-            padding: 0,
-            backgroundColor: "var(--bg-card)",
-            "& .MuiMenuItem-root": menuItemStyles,
-          },
-        },
-        transitionDuration: 250,
-      }}
-      sx={{
-        "& .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-        transition: "all 0.2s ease-in-out",
-        "& .MuiSelect-select": {
-          color: "var(--txt-title)",
-          fontSize: "var(--fs-sm)",
-        },
-        "& .MuiSvgIcon-root": {
-          color: "var(--txt-main)",
-        },
-      }}
-      renderValue={(selected) => {
-        if (!selected) {
-          return (
-            <span className="text-sub text-fs-sm">
-              {placeholder}
-            </span>
-          );
-        }
+    <>
+      <Box
+        className={`${styles.trigger} ${className}`}
+        onClick={handleOpen}
+      >
+        <Typography sx={styles.value}>
+          {selectedOption?.label || placeholder}
+        </Typography>
 
-        return options.find(
-          (option) => option.value === selected
-        )?.label;
-      }}
-    >
-      {options.map((option) => (
-        <MenuItem
-          key={option.value}
-          value={option.value}
-          sx={menuItemStyles}
-        >
-          {option.label}
-        </MenuItem>
-      ))}
-    </Select>
+        <KeyboardArrowDownIcon
+          sx={{
+            color: "var(--txt-main)",
+            fontSize: 20,
+            transition: "transform .2s ease",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </Box>
+
+      <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        elevation={0}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        slotProps={{
+          paper: {
+            sx: styles.paper,
+          },
+        }}
+      >
+        <Box sx={styles.menu}>
+          {options.map((option) => (
+            <Box
+              key={option.value}
+              onClick={() => handleSelect(option)}
+              sx={{
+                ...styles.item,
+                ...(value === option.value
+                  ? styles.selectedItem
+                  : {}),
+              }}
+            >
+              <Typography sx={styles.itemText}>
+                {option.label}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+      </Popover>
+    </>
   );
 };
 

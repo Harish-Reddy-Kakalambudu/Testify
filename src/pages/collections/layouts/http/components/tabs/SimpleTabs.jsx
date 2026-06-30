@@ -7,7 +7,7 @@ const SimpleTabs = ({tabs,onChange,activeTab})=>{
             {tabs.map((tab) => {
                 return (
                     <Box key={tab} onClick={()=>onChange(tab)}
-                        className={`h-full flex items-center justify-center cursor-pointer px-1.5 py-2 border-b-3 ${activeTab === tab ? "border-pri-500" : "border-transparent"}`}
+                        className={`h-full flex items-center justify-center cursor-pointer px-2 py-4 border-b-3 ${activeTab === tab ? "border-pri-500" : "border-transparent"}`}
                     >
                         <Typography className={`text-fs-lg! ${activeTab === tab ? "text-title!" : "text-main!"}`}>{tab}</Typography>
                     </Box>

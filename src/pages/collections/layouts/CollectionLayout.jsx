@@ -9,14 +9,9 @@ import { apiRequestTabsConfig } from "../../../config/tabs_config"
 
 const CollectionsLayout = () => {
   const [activeTab, setActiveTab] = useState("1")
-  const[tabs,setTabs] = useState(apiRequestTabsConfig)
+  
 
-  const handleClose = (id) => {
-    setTabs((prev) => prev.filter((t) => t.id !== id));
-  };
-  const handleAdd = ()=>{
-    return
-  }
+  
 
   const requestType = "Http"
   let LayoutComponent;
@@ -36,15 +31,14 @@ const CollectionsLayout = () => {
     <Box className="flex flex-col h-full w-full gap-0">
       <Box className="bg-color-soft">
         <Tabs
-        data={tabs}
-        value={activeTab}
-        onChange={setActiveTab}
-        onClose={handleClose}
-        onAdd={handleAdd}
-      />    
+          tabs={apiRequestTabsConfig}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          
+        />
       </Box>
-      
-      <TypeBar/>
+
+      <TypeBar />
       {LayoutComponent}
     </Box>
   )
